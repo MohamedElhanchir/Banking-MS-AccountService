@@ -1,7 +1,10 @@
 package elhanchir.mohamed.bankaccountservice.web;
 
+import elhanchir.mohamed.bankaccountservice.dto.BankAccountRequestDTO;
+import elhanchir.mohamed.bankaccountservice.dto.BankAccountResponseDTO;
 import elhanchir.mohamed.bankaccountservice.entities.BankAccount;
 import elhanchir.mohamed.bankaccountservice.repositories.BankAccountRepository;
+import elhanchir.mohamed.bankaccountservice.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +12,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-//@RestController
+@RestController
 @RequestMapping("/api/bankAccounts")
 @AllArgsConstructor
 public class AccountRestController {
 
-    private BankAccountRepository bankAccountRepository;
+    /*private BankAccountRepository bankAccountRepository;
 
     @GetMapping
     public List<BankAccount> getAllAccounts() {
@@ -55,5 +58,12 @@ public class AccountRestController {
     @DeleteMapping("/{id}")
     public void deleteAccount(@PathVariable String id) {
         bankAccountRepository.deleteById(id);
+    }*/
+    private AccountService accountService;
+    @PostMapping
+    public BankAccountResponseDTO createAccount(@RequestBody BankAccountRequestDTO bankAccountRequestDTO) {
+        return accountService.addAccount(bankAccountRequestDTO);
+
     }
+
 }
