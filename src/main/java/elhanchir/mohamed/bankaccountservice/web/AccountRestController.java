@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AccountRestController {
 
-    /*private BankAccountRepository bankAccountRepository;
+    private BankAccountRepository bankAccountRepository;
 
     @GetMapping
     public List<BankAccount> getAllAccounts() {
@@ -30,11 +30,11 @@ public class AccountRestController {
         return account.orElse(null);
     }
 
-   @PostMapping
+  /* @PostMapping
     public BankAccount createAccount(@RequestBody BankAccount bankAccount) {
         bankAccount.setId(UUID.randomUUID().toString());
         return bankAccountRepository.save(bankAccount);
-    }
+    }*/
 
     @PutMapping("/{id}")
     public BankAccount updateAccount(@PathVariable String id, @RequestBody BankAccount bankAccount) {
@@ -58,7 +58,7 @@ public class AccountRestController {
     @DeleteMapping("/{id}")
     public void deleteAccount(@PathVariable String id) {
         bankAccountRepository.deleteById(id);
-    }*/
+    }
     private AccountService accountService;
     @PostMapping
     public BankAccountResponseDTO createAccount(@RequestBody BankAccountRequestDTO bankAccountRequestDTO) {

@@ -3,7 +3,9 @@ package elhanchir.mohamed.bankaccountservice.web;
 import elhanchir.mohamed.bankaccountservice.dto.BankAccountRequestDTO;
 import elhanchir.mohamed.bankaccountservice.dto.BankAccountResponseDTO;
 import elhanchir.mohamed.bankaccountservice.entities.BankAccount;
+import elhanchir.mohamed.bankaccountservice.entities.Customer;
 import elhanchir.mohamed.bankaccountservice.repositories.BankAccountRepository;
+import elhanchir.mohamed.bankaccountservice.repositories.CustomerRepository;
 import elhanchir.mohamed.bankaccountservice.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -18,6 +20,7 @@ import java.util.List;
 public class AccountGraphQLController {
     private AccountService accountService;
     private BankAccountRepository bankAccountRepository;
+    private CustomerRepository customerRepository;
 
     @QueryMapping
     List<BankAccount> accountsList() {
@@ -44,6 +47,11 @@ public class AccountGraphQLController {
     Boolean deleteAccount(@Argument String id) {
         bankAccountRepository.deleteById(id);
         return true;
+    }
+
+    @QueryMapping
+    List<Customer> customersList() {
+        return customerRepository.findAll();
     }
 
 
